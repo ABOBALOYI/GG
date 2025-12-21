@@ -8,8 +8,8 @@ interface AdBannerProps {
   className?: string;
 }
 
-// AdSense publisher ID - replace with your actual ID
-const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || 'ca-pub-XXXXXXXXXX';
+// AdSense publisher ID
+const ADSENSE_CLIENT = 'ca-pub-4896697928226626';
 
 export default function AdBanner({ slot, format = 'auto', className = '' }: AdBannerProps) {
   const adRef = useRef<HTMLDivElement>(null);

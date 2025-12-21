@@ -7,8 +7,8 @@ import DisclaimerBanner from "@/components/DisclaimerBanner";
 import CookieConsent from "@/components/CookieConsent";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
-// AdSense client ID - set in environment variable
-const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+// AdSense client ID
+const ADSENSE_CLIENT = 'ca-pub-4896697928226626';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -136,6 +136,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#166534" />
+        <meta name="google-adsense-account" content="ca-pub-4896697928226626" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
