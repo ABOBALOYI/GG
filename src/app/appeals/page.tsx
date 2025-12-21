@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'SASSA Appeal Guides - Appeal a Declined Application',
     description: 'Step-by-step guides on how to appeal a declined SASSA grant application.',
-    url: 'https://grantguide.co.za/appeals',
+    url: 'https://grantsguide.co.za/appeals',
   },
   alternates: {
-    canonical: 'https://grantguide.co.za/appeals',
+    canonical: 'https://grantsguide.co.za/appeals',
   },
 };
 

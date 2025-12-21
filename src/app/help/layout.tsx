@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Caseworker - SASSA Grant Help',
     description: 'Get instant answers to your SASSA questions with our AI-powered assistant.',
-    url: 'https://grantguide.co.za/help',
+    url: 'https://grantsguide.co.za/help',
   },
   alternates: {
-    canonical: 'https://grantguide.co.za/help',
+    canonical: 'https://grantsguide.co.za/help',
   },
 };
 

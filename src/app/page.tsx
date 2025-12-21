@@ -13,10 +13,10 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Is GrantGuide SA affiliated with SASSA?',
+      name: 'Is GrantsGuide SA affiliated with SASSA?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. GrantGuide SA is an independent, unofficial platform. We provide information to help you understand SASSA grants, but we are not connected to SASSA in any way. For official services, please visit sassa.gov.za.'
+        text: 'No. GrantsGuide SA is an independent, unofficial platform. We provide information to help you understand SASSA grants, but we are not connected to SASSA in any way. For official services, please visit sassa.gov.za.'
       }
     },
     {
@@ -24,7 +24,7 @@ const faqSchema = {
       name: 'Is this service free?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, GrantGuide SA is completely free to use. We are supported by advertisements.'
+        text: 'Yes, GrantsGuide SA is completely free to use. We are supported by advertisements.'
       }
     },
     {

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://grantguide.co.za/sitemap.xml',
+    sitemap: 'https://grantsguide.co.za/sitemap.xml',
   };
 }

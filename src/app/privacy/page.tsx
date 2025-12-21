@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for GrantGuide SA - Learn how we collect, use, and protect your information.',
+  description: 'Privacy Policy for GrantsGuide SA - Learn how we collect, use, and protect your information.',
 };
 
 export default function PrivacyPage() {
@@ -16,12 +16,12 @@ export default function PrivacyPage() {
           <div className="prose prose-gray max-w-none">
             <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4">1. Introduction</h2>
             <p className="text-gray-600 mb-4">
-              GrantGuide SA (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. 
+              GrantsGuide SA (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. 
               This Privacy Policy explains how we collect, use, and safeguard your information when you 
-              visit our website grantguide.co.za.
+              visit our website grantsguide.co.za.
             </p>
             <p className="text-gray-600 mb-4">
-              <strong>Important:</strong> GrantGuide SA is an unofficial, independent information platform. 
+              <strong>Important:</strong> GrantsGuide SA is an unofficial, independent information platform. 
               We are not affiliated with SASSA (South African Social Security Agency) or any government entity.
             </p>
 
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
               If you have any questions about this Privacy Policy, please contact us at:
             </p>
             <p className="text-gray-600 mb-4">
-              Email: privacy@grantguide.co.za
+              Email: privacy@grantsguide.co.za
             </p>
           </div>
         </div>

@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'All SASSA Grants - Complete Directory',
     description: 'Explore all SASSA social grants. Understand eligibility requirements and learn how to apply.',
-    url: 'https://grantguide.co.za/grants',
+    url: 'https://grantsguide.co.za/grants',
   },
   alternates: {
-    canonical: 'https://grantguide.co.za/grants',
+    canonical: 'https://grantsguide.co.za/grants',
   },
 };

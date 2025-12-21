@@ -8,8 +8,8 @@ interface SEOProps {
 }
 
 export function generateSEOMetadata({ title, description, path, type = 'website' }: SEOProps): Metadata {
-  const fullTitle = `${title} | GrantGuide SA`;
-  const url = `https://grantguide.co.za${path}`;
+  const fullTitle = `${title} | GrantsGuide SA`;
+  const url = `https://grantsguide.co.za${path}`;
 
   return {
     title: fullTitle,
@@ -18,7 +18,7 @@ export function generateSEOMetadata({ title, description, path, type = 'website'
       title: fullTitle,
       description,
       url,
-      siteName: 'GrantGuide SA',
+      siteName: 'GrantsGuide SA',
       type,
       locale: 'en_ZA',
     },
@@ -68,7 +68,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `https://grantguide.co.za${item.url}`,
+      item: `https://grantsguide.co.za${item.url}`,
     })),
   };
 }

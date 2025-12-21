@@ -58,7 +58,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 py-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div className="flex flex-col gap-2">
-              <p className="text-gray-500 font-bold">© {new Date().getFullYear()} GrantGuide SA</p>
+              <p className="text-gray-500 font-bold">© {new Date().getFullYear()} GrantsGuide SA</p>
               <p className="text-gray-600 text-sm max-w-2xl font-medium">{t('footerDisclaimer')}</p>
               <div className="flex gap-4 mt-2">
                 <Link href="/privacy" className="text-gray-500 hover:text-green-400 text-sm transition-colors">Privacy Policy</Link>

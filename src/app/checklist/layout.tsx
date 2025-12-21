@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Document Checklist Generator - SASSA Grants',
     description: 'Generate a personalized checklist of documents needed for your SASSA grant application.',
-    url: 'https://grantguide.co.za/checklist',
+    url: 'https://grantsguide.co.za/checklist',
   },
   alternates: {
-    canonical: 'https://grantguide.co.za/checklist',
+    canonical: 'https://grantsguide.co.za/checklist',
   },
 };
 

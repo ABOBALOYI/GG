@@ -21,10 +21,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://grantguide.co.za'),
+  metadataBase: new URL('https://grantsguide.co.za'),
   title: {
-    default: "GrantGuide SA - Free SASSA Grant Information & Help 2026",
-    template: "%s | GrantGuide SA 2026",
+    default: "GrantsGuide SA - Free SASSA Grant Information & Help 2026",
+    template: "%s | GrantsGuide SA 2026",
   },
   description: "Your 2026 guide to SASSA grants in South Africa. Check eligibility, payment dates, status codes, and get AI-powered help. Unofficial - free and always updated for 2026.",
   keywords: [
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     "grant eligibility",
     "SRD grant 2026",
   ],
-  authors: [{ name: "GrantGuide SA" }],
-  creator: "GrantGuide SA",
-  publisher: "GrantGuide SA",
+  authors: [{ name: "GrantsGuide SA" }],
+  creator: "GrantsGuide SA",
+  publisher: "GrantsGuide SA",
   formatDetection: {
     email: false,
     address: false,
@@ -53,22 +53,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_ZA",
-    url: "https://grantguide.co.za",
-    siteName: "GrantGuide SA",
-    title: "GrantGuide SA - Free SASSA Grant Information & Help 2026",
+    url: "https://grantsguide.co.za",
+    siteName: "GrantsGuide SA",
+    title: "GrantsGuide SA - Free SASSA Grant Information & Help 2026",
     description: "Your 2026 guide to SASSA grants. Check eligibility, payment dates, status codes, and get AI-powered help.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "GrantGuide SA - Your Guide to SASSA Grants",
+        alt: "GrantsGuide SA - Your Guide to SASSA Grants",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GrantGuide SA - Free SASSA Grant Information 2026",
+    title: "GrantsGuide SA - Free SASSA Grant Information 2026",
     description: "Your 2026 guide to SASSA grants. Check eligibility, payment dates, and get AI-powered help.",
     images: ["/og-image.png"],
   },
@@ -88,12 +88,12 @@ export const metadata: Metadata = {
     // google: "your-google-verification-code",
   },
   alternates: {
-    canonical: "https://grantguide.co.za",
+    canonical: "https://grantsguide.co.za",
     languages: {
-      "en-ZA": "https://grantguide.co.za",
-      "zu-ZA": "https://grantguide.co.za?lang=zu",
-      "xh-ZA": "https://grantguide.co.za?lang=xh",
-      "af-ZA": "https://grantguide.co.za?lang=af",
+      "en-ZA": "https://grantsguide.co.za",
+      "zu-ZA": "https://grantsguide.co.za?lang=zu",
+      "xh-ZA": "https://grantsguide.co.za?lang=xh",
+      "af-ZA": "https://grantsguide.co.za?lang=af",
     },
   },
 };
@@ -106,12 +106,12 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "GrantGuide SA",
-    url: "https://grantguide.co.za",
+    name: "GrantsGuide SA",
+    url: "https://grantsguide.co.za",
     description: "Free guide to SASSA grants in South Africa",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://grantguide.co.za/status?q={search_term_string}",
+      target: "https://grantsguide.co.za/status?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -119,9 +119,9 @@ export default function RootLayout({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "GrantGuide SA",
-    url: "https://grantguide.co.za",
-    logo: "https://grantguide.co.za/logo.png",
+    name: "GrantsGuide SA",
+    url: "https://grantsguide.co.za",
+    logo: "https://grantsguide.co.za/logo.png",
     description: "Free, unofficial SASSA grant information platform",
     areaServed: {
       "@type": "Country",

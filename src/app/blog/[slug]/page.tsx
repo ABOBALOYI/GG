@@ -29,14 +29,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://grantguide.co.za/blog/${slug}`,
+      url: `https://grantsguide.co.za/blog/${slug}`,
       type: 'article',
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       tags: post.tags,
     },
     alternates: {
-      canonical: `https://grantguide.co.za/blog/${slug}`,
+      canonical: `https://grantsguide.co.za/blog/${slug}`,
     },
   };
 }
@@ -74,16 +74,16 @@ export default async function BlogPostPage({ params }: Props) {
     dateModified: post.updatedAt,
     author: {
       '@type': 'Organization',
-      name: 'GrantGuide SA'
+      name: 'GrantsGuide SA'
     },
     publisher: {
       '@type': 'Organization',
-      name: 'GrantGuide SA',
-      url: 'https://grantguide.co.za'
+      name: 'GrantsGuide SA',
+      url: 'https://grantsguide.co.za'
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://grantguide.co.za/blog/${slug}`
+      '@id': `https://grantsguide.co.za/blog/${slug}`
     }
   };
 
@@ -191,7 +191,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="mt-6 sm:mt-8 bg-amber-50 border border-amber-200 rounded-lg sm:rounded-xl p-4 sm:p-6">
               <p className="text-amber-800 text-xs sm:text-sm">
                 <strong>Disclaimer:</strong> This article is for informational purposes only. 
-                GrantGuide SA is not affiliated with SASSA. For official information, 
+                GrantsGuide SA is not affiliated with SASSA. For official information, 
                 please visit <a href="https://www.sassa.gov.za" target="_blank" rel="noopener noreferrer" className="underline">sassa.gov.za</a>.
               </p>
             </div>

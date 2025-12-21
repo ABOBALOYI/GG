@@ -5,7 +5,7 @@ import { getAllAppealSlugs } from '@/lib/data/appeals';
 import { getAvailableMonths } from '@/lib/data/payment-dates';
 import { getAllBlogSlugs } from '@/lib/data/blog-posts';
 
-const BASE_URL = 'https://grantguide.co.za';
+const BASE_URL = 'https://grantsguide.co.za';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

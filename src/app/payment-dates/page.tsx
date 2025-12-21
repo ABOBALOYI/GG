@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'SASSA Payment Dates - Monthly Schedule',
     description: 'Check when SASSA grants are paid each month. Bank and cash payment schedules.',
-    url: 'https://grantguide.co.za/payment-dates',
+    url: 'https://grantsguide.co.za/payment-dates',
   },
   alternates: {
-    canonical: 'https://grantguide.co.za/payment-dates',
+    canonical: 'https://grantsguide.co.za/payment-dates',
   },
 };
 

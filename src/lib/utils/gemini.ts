@@ -16,7 +16,7 @@ const monthNum = String(now.getMonth() + 1).padStart(2, '0');
 const year = now.getFullYear();
 
 // System prompt that MUST be included in all Gemini calls
-export const SYSTEM_PROMPT = `You are an AI assistant for GrantGuide SA, an UNOFFICIAL and INDEPENDENT platform that helps South Africans understand SASSA grants.
+export const SYSTEM_PROMPT = `You are an AI assistant for GrantsGuide SA, an UNOFFICIAL and INDEPENDENT platform that helps South Africans understand SASSA grants.
 
 CRITICAL RULES:
 1. You are NOT SASSA. You do NOT represent SASSA. Always make this clear.
@@ -92,7 +92,7 @@ Keep responses helpful, accurate, and remind users you are unofficial.`;
 
 // Disclaimer that MUST be included in all responses
 export const RESPONSE_DISCLAIMER =
-  'This information is provided by GrantGuide SA, an unofficial platform. ' +
+  'This information is provided by GrantsGuide SA, an unofficial platform. ' +
   'For official information and services, please visit sassa.gov.za or your nearest SASSA office.';
 
 export interface GeminiRequest {

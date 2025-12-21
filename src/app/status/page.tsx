@@ -9,10 +9,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'SASSA Status Codes Explained',
     description: 'Understand what your SASSA application status means and what to do next.',
-    url: 'https://grantguide.co.za/status',
+    url: 'https://grantsguide.co.za/status',
   },
   alternates: {
-    canonical: 'https://grantguide.co.za/status',
+    canonical: 'https://grantsguide.co.za/status',
   },
 };
 
