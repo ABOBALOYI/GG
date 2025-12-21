@@ -74,11 +74,11 @@ export default async function BlogPostPage({ params }: Props) {
     dateModified: post.updatedAt,
     author: {
       '@type': 'Organization',
-      name: 'GrantsGuide SA'
+      name: 'GrantsGuide AI'
     },
     publisher: {
       '@type': 'Organization',
-      name: 'GrantsGuide SA',
+      name: 'GrantsGuide AI',
       url: 'https://grantsguide.co.za'
     },
     mainEntityOfPage: {
@@ -191,7 +191,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="mt-6 sm:mt-8 bg-amber-50 border border-amber-200 rounded-lg sm:rounded-xl p-4 sm:p-6">
               <p className="text-amber-800 text-xs sm:text-sm">
                 <strong>Disclaimer:</strong> This article is for informational purposes only. 
-                GrantsGuide SA is not affiliated with SASSA. For official information, 
+                GrantsGuide AI is not affiliated with SASSA. For official information, 
                 please visit <a href="https://www.sassa.gov.za" target="_blank" rel="noopener noreferrer" className="underline">sassa.gov.za</a>.
               </p>
             </div>

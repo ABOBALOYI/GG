@@ -23,8 +23,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://grantsguide.co.za'),
   title: {
-    default: "GrantsGuide SA - Free SASSA Grant Information & Help 2026",
-    template: "%s | GrantsGuide SA 2026",
+    default: "GrantsGuide AI - Free SASSA Grant Information & Help 2026",
+    template: "%s | GrantsGuide AI 2026",
   },
   description: "Your 2026 guide to SASSA grants in South Africa. Check eligibility, payment dates, status codes, and get AI-powered help. Unofficial - free and always updated for 2026.",
   keywords: [
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     "grant eligibility",
     "SRD grant 2026",
   ],
-  authors: [{ name: "GrantsGuide SA" }],
-  creator: "GrantsGuide SA",
-  publisher: "GrantsGuide SA",
+  authors: [{ name: "GrantsGuide AI" }],
+  creator: "GrantsGuide AI",
+  publisher: "GrantsGuide AI",
   formatDetection: {
     email: false,
     address: false,
@@ -54,21 +54,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_ZA",
     url: "https://grantsguide.co.za",
-    siteName: "GrantsGuide SA",
-    title: "GrantsGuide SA - Free SASSA Grant Information & Help 2026",
+    siteName: "GrantsGuide AI",
+    title: "GrantsGuide AI - Free SASSA Grant Information & Help 2026",
     description: "Your 2026 guide to SASSA grants. Check eligibility, payment dates, status codes, and get AI-powered help.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "GrantsGuide SA - Your Guide to SASSA Grants",
+        alt: "GrantsGuide AI - Your Guide to SASSA Grants",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GrantsGuide SA - Free SASSA Grant Information 2026",
+    title: "GrantsGuide AI - Free SASSA Grant Information 2026",
     description: "Your 2026 guide to SASSA grants. Check eligibility, payment dates, and get AI-powered help.",
     images: ["/og-image.png"],
   },
@@ -106,7 +106,7 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "GrantsGuide SA",
+    name: "GrantsGuide AI",
     url: "https://grantsguide.co.za",
     description: "Free guide to SASSA grants in South Africa",
     potentialAction: {
@@ -119,7 +119,7 @@ export default function RootLayout({
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "GrantsGuide SA",
+    name: "GrantsGuide AI",
     url: "https://grantsguide.co.za",
     logo: "https://grantsguide.co.za/logo.png",
     description: "Free, unofficial SASSA grant information platform",

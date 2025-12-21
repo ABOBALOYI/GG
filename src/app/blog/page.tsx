@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Latest guides, tips, and news about SASSA grants. Learn about payment dates, application processes, eligibility requirements, and more.',
   keywords: ['SASSA blog', 'grant guides', 'SASSA news', 'social grant tips', 'SASSA updates'],
   openGraph: {
-    title: 'SASSA Guides & News - GrantsGuide SA Blog',
+    title: 'SASSA Guides & News - GrantsGuide AI Blog',
     description: 'Latest guides, tips, and news about SASSA grants.',
     url: 'https://grantsguide.co.za/blog',
   },

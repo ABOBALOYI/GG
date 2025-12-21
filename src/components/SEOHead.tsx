@@ -8,7 +8,7 @@ interface SEOProps {
 }
 
 export function generateSEOMetadata({ title, description, path, type = 'website' }: SEOProps): Metadata {
-  const fullTitle = `${title} | GrantsGuide SA`;
+  const fullTitle = `${title} | GrantsGuide AI`;
   const url = `https://grantsguide.co.za${path}`;
 
   return {
@@ -18,7 +18,7 @@ export function generateSEOMetadata({ title, description, path, type = 'website'
       title: fullTitle,
       description,
       url,
-      siteName: 'GrantsGuide SA',
+      siteName: 'GrantsGuide AI',
       type,
       locale: 'en_ZA',
     },
