@@ -1,0 +1,27 @@
+{
+  "name": "GrantGuide SA - SASSA Grant Information",
+  "short_name": "GrantGuide SA",
+  "description": "Free guide to SASSA grants in South Africa. Check eligibility, payment dates, status codes, and get AI-powered help.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#166534",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["government", "finance", "utilities"],
+  "lang": "en-ZA",
+  "dir": "ltr"
+}
