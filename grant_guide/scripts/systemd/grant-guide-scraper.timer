@@ -1,0 +1,19 @@
+[Unit]
+Description=Grant Guide SA Weekly Scraper Timer
+Requires=grant-guide-scraper.service
+
+[Timer]
+# Run every Sunday at 2:00 AM
+OnCalendar=Sun *-*-* 02:00:00
+
+# Add some randomness to avoid thundering herd
+RandomizedDelaySec=300
+
+# Persist timer across reboots
+Persistent=true
+
+# Run immediately if we missed the last scheduled time
+OnBootSec=5min
+
+[Install]
+WantedBy=timers.target

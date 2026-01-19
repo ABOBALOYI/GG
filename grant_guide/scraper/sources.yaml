@@ -1,0 +1,168 @@
+# Grant Guide Scraper - Approved Sources Configuration
+# Only sources listed here will be scraped
+
+sources:
+  # A) SOUTH AFRICA — PRIMARY OFFICIAL SOURCES
+  - source_id: dtic
+    source_name: "the dtic"
+    base_url: "https://www.thedtic.gov.za"
+    scrape_urls:
+      - "https://www.thedtic.gov.za/financial-and-non-financial-support/incentives/"
+    source_type: government
+    adapter_class: "scraper.adapters.dtic.DTICAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: dsbd
+    source_name: "DSBD"
+    base_url: "https://www.dsbd.gov.za"
+    scrape_urls:
+      - "https://www.dsbd.gov.za/programmes"
+    source_type: government
+    adapter_class: "scraper.adapters.dsbd.DSBDAdapter"
+    is_active: false  # SSL certificate issues
+    rate_limit_seconds: 2.0
+
+  - source_id: tia
+    source_name: "TIA"
+    base_url: "https://www.tia.org.za"
+    scrape_urls:
+      - "https://www.tia.org.za/category/open-calls/"
+    source_type: government
+    adapter_class: "scraper.adapters.tia.TIAAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: nyda
+    source_name: "NYDA"
+    base_url: "https://www.nyda.gov.za"
+    scrape_urls:
+      - "https://www.nyda.gov.za"
+    source_type: government
+    adapter_class: "scraper.adapters.nyda.NYDAAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: sefa
+    source_name: "SEFA"
+    base_url: "https://www.sefa.org.za"
+    scrape_urls:
+      - "https://www.sefa.org.za/"
+    source_type: government
+    adapter_class: "scraper.adapters.sefa.SEFAAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: idc
+    source_name: "IDC"
+    base_url: "https://www.idc.co.za"
+    scrape_urls:
+      - "https://www.idc.co.za/what-we-offer-2/"
+    source_type: government
+    adapter_class: "scraper.adapters.idc.IDCAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: nef
+    source_name: "NEF"
+    base_url: "https://www.nefcorp.co.za"
+    scrape_urls:
+      - "https://www.nefcorp.co.za/"
+    source_type: government
+    adapter_class: "scraper.adapters.nef.NEFAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  # B) SOUTH AFRICA — PROVINCIAL SOURCES
+  - source_id: gep
+    source_name: "GEP Gauteng"
+    base_url: "https://www.gep.co.za"
+    scrape_urls:
+      - "https://www.gep.co.za/public-notices/call-for-proposals/"
+    source_type: provincial
+    adapter_class: "scraper.adapters.gep.GEPAdapter"
+    is_active: false  # Website times out frequently
+    rate_limit_seconds: 2.0
+
+  - source_id: ecdc
+    source_name: "ECDC Eastern Cape"
+    base_url: "https://www.ecdc.co.za"
+    scrape_urls:
+      - "https://www.ecdc.co.za/fundingprogrammes"
+    source_type: provincial
+    adapter_class: "scraper.adapters.ecdc.ECDCAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: dedat
+    source_name: "Western Cape DEDAT"
+    base_url: "https://dedat-funding.westerncape.gov.za"
+    scrape_urls:
+      - "https://dedat-funding.westerncape.gov.za/"
+    source_type: provincial
+    adapter_class: "scraper.adapters.dedat.DEDATAdapter"
+    is_active: false  # Blocked by robots.txt
+    rate_limit_seconds: 2.0
+
+  # C) SOUTH AFRICA — SETA FUNDING WINDOWS
+  - source_id: services_seta
+    source_name: "Services SETA"
+    base_url: "https://www.serviceseta.org.za"
+    scrape_urls:
+      - "https://www.serviceseta.org.za/"
+    source_type: seta
+    adapter_class: "scraper.adapters.seta.ServicesSETAAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: hwseta
+    source_name: "HWSETA"
+    base_url: "https://www.hwseta.org.za"
+    scrape_urls:
+      - "https://www.hwseta.org.za/"
+    source_type: seta
+    adapter_class: "scraper.adapters.seta.HWSETAAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: ceta
+    source_name: "CETA"
+    base_url: "https://ceta.org.za"
+    scrape_urls:
+      - "https://ceta.org.za/"
+    source_type: seta
+    adapter_class: "scraper.adapters.seta.CETAAdapter"
+    is_active: false  # Blocked by robots.txt
+    rate_limit_seconds: 2.0
+
+  # D) PRIVATE / CORPORATE
+  - source_id: sab_foundation
+    source_name: "SAB Foundation"
+    base_url: "https://www.sabfoundation.co.za"
+    scrape_urls:
+      - "https://www.sabfoundation.co.za/"
+    source_type: corporate
+    adapter_class: "scraper.adapters.sab.SABFoundationAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  # E) INTERNATIONAL DONORS
+  - source_id: aecf
+    source_name: "AECF"
+    base_url: "https://www.aecfafrica.org"
+    scrape_urls:
+      - "https://www.aecfafrica.org/im-looking-to/see-aecfs-funding-opportunities/"
+    source_type: international
+    adapter_class: "scraper.adapters.aecf.AECFAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0
+
+  - source_id: tef
+    source_name: "Tony Elumelu Foundation"
+    base_url: "https://www.tefconnect.com"
+    scrape_urls:
+      - "https://www.tefconnect.com/"
+    source_type: international
+    adapter_class: "scraper.adapters.tef.TEFAdapter"
+    is_active: true
+    rate_limit_seconds: 2.0

@@ -1,0 +1,4 @@
+# file: /Users/abo/Desktop/sassa/grant_guide/scraper/deduplicator.py
+# hypothesis_version: 6.150.2
+
+[0.0, 0.85, 1.0, 100.0, 'apply_link', 'apply_url', 'funder', 'funding_name', 'fuzzy_title', 'id', 'source_link', 'source_url']

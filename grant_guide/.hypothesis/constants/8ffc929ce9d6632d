@@ -1,0 +1,4 @@
+# file: /Users/abo/Desktop/sassa/grant_guide/opportunities/models.py
+# hypothesis_version: 6.150.2
+
+[100, 255, 280, 500, '%d %B %Y', '-created_at', '-timestamp', 'Active', 'Any', 'Competition Prize', 'Draft', 'Equity', 'Established', 'Expired', 'Exporters', 'Grant', 'Industries', 'Industry', 'Innovators', 'Loan', 'Mixed', 'Needs Review', 'No', 'Not specified', 'Province', 'Rural', 'SME', 'Startup', 'Township', 'Unknown', 'Women', 'Yes', 'Youth', 'active', 'any', 'application_steps', 'apply_link', 'audit_logs', 'competition', 'deadline', 'draft', 'equity', 'established', 'expired', 'exporters', 'funder', 'funding_name', 'grant', 'innovators', 'loan', 'mixed', 'name', 'needs_review', 'no', 'opportunities', 'required_documents', 'rural', 'sme', 'source_link', 'startup', 'township', 'unknown', 'women', 'yes', 'youth']

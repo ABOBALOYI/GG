@@ -1,0 +1,4 @@
+# file: /Users/abo/Desktop/sassa/grant_guide/scraper/status.py
+# hypothesis_version: 6.150.2
+
+['funder_name', 'funding_type', 'official_apply_url', 'source_url', 'title']

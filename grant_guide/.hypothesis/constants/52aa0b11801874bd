@@ -1,0 +1,4 @@
+# file: /Users/abo/Desktop/sassa/grant_guide/scraper/models.py
+# hypothesis_version: 6.150.2
+
+[2.0, 'Active', 'Any', 'CompetitionPrize', 'DFI', 'DraftNeedsReview', 'Equity', 'Established', 'Expired', 'FundingOpportunity', 'FundingProduct', 'Gov', 'Grant', 'Loan', 'Mixed', 'NGO-Donor', 'Private', 'SME', 'Startup', 'corporate', 'government', 'international', 'provincial', 'seta']

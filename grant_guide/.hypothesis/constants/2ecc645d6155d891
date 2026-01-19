@@ -1,0 +1,4 @@
+# file: /Users/abo/Desktop/sassa/grant_guide/scraper/compliance.py
+# hypothesis_version: 6.150.2
+
+['<form[^>]*login', '<form[^>]*signin', 'admin fee', 'application fee', 'captcha', 'chat.whatsapp.com', 'deposit required', 'facebook.com', 'fb.com', 'fb.me', 'fee of r', 'fee payable', 'hcaptcha', 'http', 'https', 'instagram.com', 'members\\s+only', 'non-refundable fee', 'pay before', 'pay to apply', 'payment of r', 'payment required', 'paywall', 'please\\s+log\\s*in', 'premium\\s+content', 'processing fee', 'recaptcha', 'registration fee', 't.me', 'telegram.me', 'telegram.org', 'tiktok.com', 'twitter.com', 'wa.me', 'whatsapp.com', 'x.com']

@@ -1,0 +1,4 @@
+# file: /Users/abo/Desktop/sassa/grant_guide/opportunities/admin.py
+# hypothesis_version: 6.150.2
+
+['Application', 'Audit', 'Basic Information', 'Eligibility', 'Funding Details', 'Optional Fields', 'action', 'active', 'application_steps', 'apply_link', 'bbbee_requirement', 'business_stage', 'changes', 'classes', 'collapse', 'contact_email', 'contact_phone', 'created', 'created_at', 'created_by', 'deadline', 'description', 'draft', 'expired', 'fields', 'funder', 'funding_amount', 'funding_name', 'funding_type', 'industries', 'is_national', 'is_rolling', 'last_verified', 'name', 'needs_review', 'notes', 'opportunity', 'processing_time', 'provinces', 'required_documents', 'slug', 'source_link', 'status', 'target_groups', 'timestamp', 'updated', 'updated_at', 'updated_by', 'user', 'user__username']

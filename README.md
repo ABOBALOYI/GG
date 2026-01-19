@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GrantGuide AI
+
+GrantGuide AI is an automated assistance system for South African social grants information. It operates as an independent, unofficial guidance assistant designed to translate verified, publicly available grant information into plain, actionable guidance.
+
+## Core Principles
+
+- **Independence**: Not affiliated with SASSA or the government.
+- **Privacy**: Does not request or store sensitive personal data.
+- **Accuracy**: Relies on specific Knowledge Base retrieval (RAG).
+- **Clarity**: Uses plain English suitable for all literacy levels.
+
+## Tech Stack
+- **Framework**: Next.js 15+ (App Router)
+- **Styling**: Vanilla CSS (Premium Aesthetics)
+- **AI Engine**: Vercel AI SDK + Google Gemini
+- **Language**: TypeScript
+
+## Features
+- **Knowledge Base RAG**: Retrieves verified grant info to prevent hallucinations.
+- **Strict Persona**: Enforced "unofficial guide" rules via System Prompt.
+- **Dynamic Content**: Grant detail pages generated from a central data source.
+- **Premium UI**: Glassmorphism, animations, and responsive design.
 
 ## Getting Started
 
-First, run the development server:
+1.  **Set up Environment**:
+    Create a `.env` file in the root and add your Google Gemini API Key:
+    ```env
+    GOOGLE_GENERATIVE_AI_API_KEY=your_api_key_here
+    ```
+
+2.  **Run the development server**:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### GitHub
+1.  Initialize git (if not already): `git init`
+2.  Add files: `git add .`
+3.  Commit: `git commit -m "chore: prepare for deployment and adsense"`
+4.  Create a repo on GitHub and push.
 
-## Learn More
+### AWS Amplify
+1.  Go to the [AWS Amplify Console](https://console.aws.amazon.com/amplify/home).
+2.  Connect your GitHub repository.
+3.  Amplify will automatically detect Next.js.
+4.  **Environment Variables**: Ensure you add `GOOGLE_GENERATIVE_AI_API_KEY` in the Amplify Console under "Environment variables".
+5.  **Build Settings**: Amplify's default settings for Next.js should work. Ensure the build command is `npm run build` and the base directory is `.next`.
 
-To learn more about Next.js, take a look at the following resources:
+## AdSense Readiness
+- **Privacy Policy**: Updated with mandatory AdSense disclosures.
+- **`ads.txt`**: Located in `public/ads.txt`. (Update with your pub-ID after approval).
+- **Sitemap**: Automatically generated at `/sitemap.xml` for crawler discovery.
+- **Layout**: AdSense script integrated in `src/app/layout.tsx`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## System Prompt
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The operational persona and rules are defined in `SYSTEM_PROMPT.md`.

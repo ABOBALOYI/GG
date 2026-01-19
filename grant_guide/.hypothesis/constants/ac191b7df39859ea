@@ -1,0 +1,4 @@
+# file: /Users/abo/Desktop/sassa/grant_guide/grant_guide/settings.py
+# hypothesis_version: 6.150.2
+
+[',', '1', '5432', 'APP_DIRS', 'Africa/Johannesburg', 'BACKEND', 'DEBUG', 'DIRS', 'DJANGO_ALLOWED_HOSTS', 'DJANGO_DEBUG', 'DJANGO_LOG_LEVEL', 'DJANGO_SECRET_KEY', 'ENGINE', 'False', 'HOST', 'INFO', 'NAME', 'OPTIONS', 'PASSWORD', 'PORT', 'POSTGRES_DB', 'POSTGRES_HOST', 'POSTGRES_PASSWORD', 'POSTGRES_PORT', 'POSTGRES_USER', 'STRICTNESS', 'True', 'USER', 'USE_POSTGRES', 'class', 'console', 'context_processors', 'db.sqlite3', 'default', 'django', 'django.contrib.admin', 'django.contrib.auth', 'django_filters', 'en-za', 'format', 'formatter', 'formatters', 'grant_guide', 'grant_guide.urls', 'handlers', 'level', 'localhost', 'localhost,127.0.0.1', 'loggers', 'opportunities', 'propagate', 'root', 'scraper', 'simple', 'static', 'static/', 'staticfiles', 'style', 'templates', 'true', 'verbose', 'version', 'yes', '{']

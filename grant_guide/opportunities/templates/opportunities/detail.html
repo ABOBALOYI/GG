@@ -1,0 +1,537 @@
+{% extends "base.html" %}
+
+{% block title %}{{ opportunity.funding_name }} - Grant Guide SA{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-12 max-w-6xl">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center space-x-2 text-sm text-zinc-400 mb-8">
+        <a href="{% url 'opportunities:home' %}" class="hover:text-zinc-900 transition-colors">Home</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        <a href="{% url 'opportunities:list' %}" class="hover:text-zinc-900 transition-colors">Opportunities</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        <span class="text-zinc-900 font-medium truncate max-w-[200px]">{{ opportunity.funding_name }}</span>
+    </nav>
+
+    <div class="grid lg:grid-cols-3 gap-10">
+        <!-- Main Content -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- Header Card -->
+            <div class="glass-card rounded-3xl border border-zinc-200/50 premium-shadow overflow-hidden">
+                <!-- Colored top bar -->
+                <div class="h-2 w-full
+                    {% if opportunity.funding_type == 'grant' %}bg-gradient-to-r from-brand-500 to-brand-400
+                    {% elif opportunity.funding_type == 'loan' %}bg-gradient-to-r from-blue-500 to-blue-400
+                    {% elif opportunity.funding_type == 'equity' %}bg-gradient-to-r from-purple-500 to-purple-400
+                    {% elif opportunity.funding_type == 'competition' %}bg-gradient-to-r from-orange-500 to-orange-400
+                    {% else %}bg-gradient-to-r from-zinc-400 to-zinc-300{% endif %}">
+                </div>
+                
+                <div class="p-8 md:p-10">
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="inline-flex items-center px-4 py-2 rounded-xl text-sm font-bold uppercase tracking-wide
+                            {% if opportunity.funding_type == 'grant' %}bg-brand-50 text-brand-700 ring-1 ring-brand-100
+                            {% elif opportunity.funding_type == 'loan' %}bg-blue-50 text-blue-700 ring-1 ring-blue-100
+                            {% elif opportunity.funding_type == 'equity' %}bg-purple-50 text-purple-700 ring-1 ring-purple-100
+                            {% elif opportunity.funding_type == 'competition' %}bg-orange-50 text-orange-700 ring-1 ring-orange-100
+                            {% else %}bg-zinc-100 text-zinc-700 ring-1 ring-zinc-200{% endif %}">
+                            {{ opportunity.get_funding_type_display }}
+                        </span>
+                        <span class="inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-100 text-zinc-700">
+                            {{ opportunity.get_business_stage_display }}
+                        </span>
+                        {% if opportunity.is_closing_soon %}
+                        <span class="inline-flex items-center px-4 py-2 rounded-xl text-sm font-bold bg-red-50 text-red-700 ring-1 ring-red-100 animate-pulse">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Closing Soon
+                        </span>
+                        {% endif %}
+                    </div>
+                    
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-zinc-900 tracking-tight mb-4 leading-tight">
+                        {{ opportunity.funding_name }}
+                    </h1>
+                    
+                    <div class="flex items-center text-lg text-zinc-500 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center mr-3">
+                            <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <span class="font-medium">{{ opportunity.funder }}</span>
+                    </div>
+
+                    <!-- Quick Stats Row -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-zinc-100">
+                        <div class="text-center p-4 bg-zinc-50 rounded-xl">
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Funding</p>
+                            <p class="text-lg font-bold text-zinc-900">{% if opportunity.funding_amount %}{{ opportunity.funding_amount }}{% else %}Variable{% endif %}</p>
+                        </div>
+                        <div class="text-center p-4 bg-zinc-50 rounded-xl">
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Deadline</p>
+                            <p class="text-sm font-bold {% if opportunity.is_closing_soon %}text-red-600{% else %}text-zinc-900{% endif %}">{{ opportunity.deadline_display }}</p>
+                        </div>
+                        <div class="text-center p-4 bg-zinc-50 rounded-xl">
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Type</p>
+                            <p class="text-sm font-bold text-zinc-900">{{ opportunity.get_funding_type_display }}</p>
+                        </div>
+                        <div class="text-center p-4 bg-zinc-50 rounded-xl">
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Stage</p>
+                            <p class="text-sm font-bold text-zinc-900">{{ opportunity.get_business_stage_display }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Description -->
+            <section class="glass-card rounded-3xl border border-zinc-200/50 p-8 md:p-10">
+                <h2 class="text-xl font-bold text-zinc-900 mb-6 flex items-center">
+                    <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center mr-4">
+                        <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    About This Opportunity
+                </h2>
+                <div class="text-zinc-600 leading-relaxed text-lg space-y-4 prose prose-zinc max-w-none">
+                    {{ opportunity.description|linebreaks }}
+                </div>
+                
+                <!-- Industries & Coverage -->
+                <div class="mt-8 pt-8 border-t border-zinc-100 grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Industries Supported</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for industry in opportunity.industries.all %}
+                            <span class="px-3 py-1.5 bg-zinc-100 text-zinc-700 rounded-lg text-sm font-medium">{{ industry.name }}</span>
+                            {% empty %}
+                            <span class="text-zinc-400 text-sm">All industries eligible</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Geographic Coverage</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for province in opportunity.provinces.all %}
+                            <span class="px-3 py-1.5 bg-zinc-100 text-zinc-700 rounded-lg text-sm font-medium">{{ province.name }}</span>
+                            {% empty %}
+                            <span class="px-3 py-1.5 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium">National / All Provinces</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Who Should Apply -->
+            <section class="glass-card rounded-3xl border border-zinc-200/50 p-8 md:p-10 bg-gradient-to-br from-brand-50/30 to-transparent">
+                <h2 class="text-xl font-bold text-zinc-900 mb-6 flex items-center">
+                    <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center mr-4">
+                        <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    Who Should Apply
+                </h2>
+                
+                <!-- Target Groups -->
+                {% if opportunity.target_groups %}
+                <div class="mb-6">
+                    <h3 class="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Priority Groups</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for group in opportunity.target_groups %}
+                        <span class="px-4 py-2 bg-brand-100 text-brand-800 rounded-xl text-sm font-semibold">
+                            {% if group == 'women' %}👩 Women-Owned{% endif %}
+                            {% if group == 'youth' %}🧑 Youth (18-35){% endif %}
+                            {% if group == 'township' %}🏘️ Township Businesses{% endif %}
+                            {% if group == 'rural' %}🌾 Rural Enterprises{% endif %}
+                            {% if group == 'exporters' %}🌍 Exporters{% endif %}
+                            {% if group == 'innovators' %}💡 Innovators{% endif %}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Eligibility Requirements -->
+                <h3 class="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-4">Eligibility Requirements</h3>
+                {% if opportunity.eligibility_requirements %}
+                <ul class="space-y-3">
+                    {% for req in opportunity.eligibility_requirements %}
+                    <li class="flex items-start">
+                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-500 text-white flex items-center justify-center mr-4 mt-0.5">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </span>
+                        <span class="text-zinc-700 text-lg">{{ req }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <div class="bg-zinc-50 rounded-xl p-6 text-center">
+                    <p class="text-zinc-500">Specific eligibility requirements not listed. Please check the official website for detailed criteria.</p>
+                    <a href="{{ opportunity.source_link }}" target="_blank" class="inline-flex items-center text-brand-600 font-semibold mt-2 hover:text-brand-700">
+                        View Official Requirements
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+                {% endif %}
+                
+                <!-- B-BBEE Requirement -->
+                {% if opportunity.bbbee_requirement %}
+                <div class="mt-6 p-4 bg-amber-50 border border-amber-100 rounded-xl">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-amber-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span class="font-semibold text-amber-800">B-BBEE Requirement: 
+                            {% if opportunity.bbbee_requirement == 'yes' %}Required{% elif opportunity.bbbee_requirement == 'no' %}Not Required{% else %}Check with funder{% endif %}
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
+            </section>
+
+            <!-- Required Documents -->
+            <section class="glass-card rounded-3xl border border-zinc-200/50 p-8 md:p-10">
+                <h2 class="text-xl font-bold text-zinc-900 mb-6 flex items-center">
+                    <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center mr-4">
+                        <svg class="w-5 h-5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    Documents You'll Need
+                </h2>
+                
+                {% if opportunity.required_documents %}
+                <div class="grid sm:grid-cols-2 gap-4">
+                    {% for doc in opportunity.required_documents %}
+                    <div class="flex items-center p-4 bg-zinc-50 border border-zinc-100 rounded-xl">
+                        <div class="w-8 h-8 rounded-lg bg-white border border-zinc-200 flex items-center justify-center mr-3">
+                            <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-zinc-700">{{ doc }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <!-- Common Documents Checklist -->
+                <p class="text-zinc-500 mb-6">While specific requirements vary, most South African funding applications typically require:</p>
+                <div class="grid sm:grid-cols-2 gap-3">
+                    <div class="flex items-center p-3 bg-zinc-50 rounded-xl">
+                        <svg class="w-5 h-5 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                        </svg>
+                        <span class="text-sm text-zinc-600">CIPC Registration Documents</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-zinc-50 rounded-xl">
+                        <svg class="w-5 h-5 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                        </svg>
+                        <span class="text-sm text-zinc-600">Business Plan</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-zinc-50 rounded-xl">
+                        <svg class="w-5 h-5 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                        </svg>
+                        <span class="text-sm text-zinc-600">ID Documents of Directors</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-zinc-50 rounded-xl">
+                        <svg class="w-5 h-5 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                        </svg>
+                        <span class="text-sm text-zinc-600">Bank Statements (3-6 months)</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-zinc-50 rounded-xl">
+                        <svg class="w-5 h-5 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                        </svg>
+                        <span class="text-sm text-zinc-600">Tax Clearance Certificate</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-zinc-50 rounded-xl">
+                        <svg class="w-5 h-5 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                        </svg>
+                        <span class="text-sm text-zinc-600">Financial Statements</span>
+                    </div>
+                </div>
+                <p class="text-xs text-zinc-400 mt-4 italic">* Confirm exact requirements on the official application portal</p>
+                {% endif %}
+            </section>
+
+            <!-- Application Process -->
+            <section class="glass-card rounded-3xl border border-zinc-200/50 p-8 md:p-10">
+                <h2 class="text-xl font-bold text-zinc-900 mb-8 flex items-center">
+                    <div class="w-10 h-10 rounded-xl bg-gold-100 flex items-center justify-center mr-4">
+                        <svg class="w-5 h-5 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    How to Apply
+                </h2>
+                
+                {% if opportunity.application_steps %}
+                <div class="space-y-6">
+                    {% for step in opportunity.application_steps %}
+                    <div class="flex group">
+                        <div class="flex-shrink-0 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-zinc-900 to-zinc-700 text-white rounded-2xl flex items-center justify-center text-lg font-bold shadow-lg group-hover:scale-110 transition-transform">
+                                {{ forloop.counter }}
+                            </div>
+                            {% if not forloop.last %}
+                            <div class="absolute top-14 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-zinc-200"></div>
+                            {% endif %}
+                        </div>
+                        <div class="ml-5 pt-2">
+                            <p class="text-zinc-700 text-lg leading-relaxed">{{ step }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <!-- Generic Application Steps -->
+                <div class="space-y-6">
+                    <div class="flex group">
+                        <div class="flex-shrink-0 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-zinc-900 to-zinc-700 text-white rounded-2xl flex items-center justify-center text-lg font-bold shadow-lg">1</div>
+                            <div class="absolute top-14 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-zinc-200"></div>
+                        </div>
+                        <div class="ml-5 pt-2">
+                            <p class="text-zinc-700 text-lg leading-relaxed">Visit the official funder website and review all eligibility criteria carefully</p>
+                        </div>
+                    </div>
+                    <div class="flex group">
+                        <div class="flex-shrink-0 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-zinc-900 to-zinc-700 text-white rounded-2xl flex items-center justify-center text-lg font-bold shadow-lg">2</div>
+                            <div class="absolute top-14 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-zinc-200"></div>
+                        </div>
+                        <div class="ml-5 pt-2">
+                            <p class="text-zinc-700 text-lg leading-relaxed">Gather all required documents (CIPC, business plan, financials, IDs)</p>
+                        </div>
+                    </div>
+                    <div class="flex group">
+                        <div class="flex-shrink-0 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-zinc-900 to-zinc-700 text-white rounded-2xl flex items-center justify-center text-lg font-bold shadow-lg">3</div>
+                            <div class="absolute top-14 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-zinc-200"></div>
+                        </div>
+                        <div class="ml-5 pt-2">
+                            <p class="text-zinc-700 text-lg leading-relaxed">Complete the online application form or download and fill the application pack</p>
+                        </div>
+                    </div>
+                    <div class="flex group">
+                        <div class="flex-shrink-0 relative">
+                            <div class="w-12 h-12 bg-gradient-to-br from-zinc-900 to-zinc-700 text-white rounded-2xl flex items-center justify-center text-lg font-bold shadow-lg">4</div>
+                        </div>
+                        <div class="ml-5 pt-2">
+                            <p class="text-zinc-700 text-lg leading-relaxed">Submit your application before the deadline and keep your reference number</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-zinc-400 mt-6 italic">* These are general steps. Please follow the specific instructions on the official application portal.</p>
+                {% endif %}
+                
+                <!-- Processing Time -->
+                {% if opportunity.processing_time %}
+                <div class="mt-8 p-4 bg-blue-50 border border-blue-100 rounded-xl">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="font-semibold text-blue-800">Expected Processing Time: {{ opportunity.processing_time }}</span>
+                    </div>
+                </div>
+                {% endif %}
+            </section>
+
+            <!-- About the Funder -->
+            <section class="glass-card rounded-3xl border border-zinc-200/50 p-8 md:p-10 bg-gradient-to-br from-zinc-50 to-transparent">
+                <h2 class="text-xl font-bold text-zinc-900 mb-6 flex items-center">
+                    <div class="w-10 h-10 rounded-xl bg-zinc-200 flex items-center justify-center mr-4">
+                        <svg class="w-5 h-5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    About {{ opportunity.funder }}
+                </h2>
+                <p class="text-zinc-600 leading-relaxed mb-6">
+                    This funding opportunity is provided by <strong>{{ opportunity.funder }}</strong>. 
+                    For the most accurate and up-to-date information about this programme, eligibility criteria, 
+                    and application requirements, please visit their official website.
+                </p>
+                
+                <!-- Contact Info -->
+                {% if opportunity.contact_email or opportunity.contact_phone %}
+                <div class="bg-white rounded-xl p-6 border border-zinc-100">
+                    <h3 class="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-4">Contact Information</h3>
+                    <div class="space-y-3">
+                        {% if opportunity.contact_email %}
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <a href="mailto:{{ opportunity.contact_email }}" class="text-brand-600 hover:text-brand-700 font-medium">{{ opportunity.contact_email }}</a>
+                        </div>
+                        {% endif %}
+                        {% if opportunity.contact_phone %}
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-zinc-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <a href="tel:{{ opportunity.contact_phone }}" class="text-brand-600 hover:text-brand-700 font-medium">{{ opportunity.contact_phone }}</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+            <!-- Apply Card -->
+            <div class="glass-card rounded-3xl border border-zinc-200/50 premium-shadow p-8 sticky top-24">
+                <!-- Funding Amount -->
+                <div class="mb-8 pb-8 border-b border-zinc-100">
+                    <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">Potential Funding</p>
+                    <p class="text-4xl font-black text-zinc-900">
+                        {% if opportunity.funding_amount %}{{ opportunity.funding_amount }}{% else %}<span class="text-2xl text-zinc-400">Variable</span>{% endif %}
+                    </p>
+                    <p class="text-sm text-zinc-500 mt-2">{{ opportunity.get_funding_type_display }} funding</p>
+                </div>
+
+                <!-- Key Details -->
+                <div class="space-y-5 mb-8">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-zinc-50 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Deadline</p>
+                            <p class="text-lg font-bold {% if opportunity.is_closing_soon %}text-red-600{% else %}text-zinc-900{% endif %}">
+                                {{ opportunity.deadline_display }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-zinc-50 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Coverage</p>
+                            <p class="text-sm font-semibold text-zinc-700">
+                                {% for province in opportunity.provinces.all %}
+                                {{ province.name }}{% if not forloop.last %}, {% endif %}
+                                {% empty %}
+                                National
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-zinc-50 rounded-xl flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Business Stage</p>
+                            <p class="text-sm font-semibold text-zinc-700">{{ opportunity.get_business_stage_display }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <a href="{{ opportunity.apply_link }}" target="_blank" rel="noopener noreferrer" class="group block w-full">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-brand-400 rounded-2xl blur opacity-40 group-hover:opacity-60 transition-opacity"></div>
+                        <div class="relative btn-shimmer bg-gradient-to-r from-brand-600 to-brand-500 text-white px-8 py-5 rounded-2xl font-bold text-center hover:from-brand-700 hover:to-brand-600 transition-all shadow-xl flex items-center justify-center">
+                            Apply Now
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                
+                <p class="text-center text-xs text-zinc-400 mt-4">
+                    Opens official {{ opportunity.funder }} website
+                </p>
+            </div>
+
+            <!-- Quick Facts -->
+            <div class="glass-card rounded-2xl border border-zinc-200/50 p-6">
+                <h3 class="text-sm font-bold text-zinc-900 mb-4 flex items-center">
+                    <svg class="w-4 h-4 mr-2 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Quick Facts
+                </h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-center justify-between">
+                        <span class="text-zinc-500">Funding Type</span>
+                        <span class="font-semibold text-zinc-900">{{ opportunity.get_funding_type_display }}</span>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <span class="text-zinc-500">Repayment</span>
+                        <span class="font-semibold text-zinc-900">
+                            {% if opportunity.funding_type == 'grant' %}Not Required{% elif opportunity.funding_type == 'loan' %}Required{% else %}Varies{% endif %}
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <span class="text-zinc-500">Last Verified</span>
+                        <span class="font-semibold text-zinc-900">{{ opportunity.last_verified|date:"d M Y" }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Verification Notice -->
+            <div class="glass-card rounded-2xl border border-zinc-200/50 p-6 bg-gradient-to-br from-amber-50/50 to-transparent">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center mr-4 flex-shrink-0">
+                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-zinc-900 mb-2">Important Notice</h3>
+                        <p class="text-xs text-zinc-500 leading-relaxed">
+                            Information is sourced from public records. Always verify details, eligibility, and deadlines on the official funder website before applying.
+                        </p>
+                        <a href="{{ opportunity.source_link }}" target="_blank" class="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-700 mt-3 transition-colors">
+                            View Official Source
+                            <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to List -->
+            <a href="{% url 'opportunities:list' %}" class="flex items-center justify-center p-4 rounded-xl border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 transition-all text-sm font-semibold text-zinc-600 hover:text-zinc-900">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Browse More Opportunities
+            </a>
+        </aside>
+    </div>
+</div>
+{% endblock %}

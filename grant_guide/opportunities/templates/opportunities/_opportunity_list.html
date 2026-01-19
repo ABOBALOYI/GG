@@ -1,0 +1,75 @@
+{% if opportunities %}
+<!-- Results count update -->
+<script>
+    document.getElementById('result-count').textContent = '{{ total_count }}';
+</script>
+
+<div class="grid md:grid-cols-2 gap-6">
+    {% for opportunity in opportunities %}
+    {% include "opportunities/_opportunity_card.html" %}
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if opportunities.has_other_pages %}
+<div class="flex items-center justify-center mt-12 space-x-2">
+    {% if opportunities.has_previous %}
+    <a href="?page={{ opportunities.previous_page_number }}{% if query_string %}&{{ query_string }}{% endif %}" 
+       hx-get="{% url 'opportunities:search' %}?page={{ opportunities.previous_page_number }}{% if query_string %}&{{ query_string }}{% endif %}"
+       hx-target="#results"
+       class="flex items-center px-5 py-3 bg-white border border-zinc-200 rounded-xl text-sm font-semibold text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50 transition-all">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Previous
+    </a>
+    {% endif %}
+    
+    <div class="flex items-center space-x-1">
+        {% for num in opportunities.paginator.page_range %}
+            {% if num == opportunities.number %}
+            <span class="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-brand-600 to-brand-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-brand-500/25">{{ num }}</span>
+            {% elif num > opportunities.number|add:'-3' and num < opportunities.number|add:'3' %}
+            <a href="?page={{ num }}{% if query_string %}&{{ query_string }}{% endif %}"
+               hx-get="{% url 'opportunities:search' %}?page={{ num }}{% if query_string %}&{{ query_string }}{% endif %}"
+               hx-target="#results"
+               class="w-10 h-10 flex items-center justify-center bg-white border border-zinc-200 rounded-xl text-sm font-semibold text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50 transition-all">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    {% if opportunities.has_next %}
+    <a href="?page={{ opportunities.next_page_number }}{% if query_string %}&{{ query_string }}{% endif %}"
+       hx-get="{% url 'opportunities:search' %}?page={{ opportunities.next_page_number }}{% if query_string %}&{{ query_string }}{% endif %}"
+       hx-target="#results"
+       class="flex items-center px-5 py-3 bg-white border border-zinc-200 rounded-xl text-sm font-semibold text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50 transition-all">
+        Next
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+    </a>
+    {% endif %}
+</div>
+{% endif %}
+{% else %}
+<!-- Results count update -->
+<script>
+    document.getElementById('result-count').textContent = '0';
+</script>
+
+<div class="text-center py-20 glass-card rounded-3xl border border-zinc-200/50">
+    <div class="w-20 h-20 bg-zinc-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+    </div>
+    <h3 class="text-xl font-bold text-zinc-900 mb-2">No opportunities found</h3>
+    <p class="text-zinc-500 mb-6">Try adjusting your filters or search terms.</p>
+    <a href="{% url 'opportunities:list' %}" class="inline-flex items-center px-6 py-3 bg-zinc-900 text-white rounded-xl font-semibold hover:bg-zinc-800 transition-all">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+        </svg>
+        Clear All Filters
+    </a>
+</div>
+{% endif %}

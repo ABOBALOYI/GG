@@ -1,0 +1,124 @@
+<a href="{% url 'opportunities:detail' opportunity.slug %}" class="group block h-full">
+    <div class="glass-card rounded-2xl border border-zinc-200/50 overflow-hidden card-hover h-full flex flex-col">
+        <!-- Colored top bar based on funding type -->
+        <div class="h-1.5 w-full
+            {% if opportunity.funding_type == 'grant' %}bg-gradient-to-r from-brand-500 to-brand-400
+            {% elif opportunity.funding_type == 'loan' %}bg-gradient-to-r from-blue-500 to-blue-400
+            {% elif opportunity.funding_type == 'equity' %}bg-gradient-to-r from-purple-500 to-purple-400
+            {% elif opportunity.funding_type == 'competition' %}bg-gradient-to-r from-orange-500 to-orange-400
+            {% else %}bg-gradient-to-r from-zinc-400 to-zinc-300{% endif %}">
+        </div>
+        
+        <div class="p-6 flex-grow flex flex-col">
+            <!-- Header with badges -->
+            <div class="flex items-start justify-between gap-3 mb-4">
+                <div class="flex flex-wrap gap-2">
+                    <span class="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide
+                        {% if opportunity.funding_type == 'grant' %}bg-brand-50 text-brand-700 ring-1 ring-brand-100
+                        {% elif opportunity.funding_type == 'loan' %}bg-blue-50 text-blue-700 ring-1 ring-blue-100
+                        {% elif opportunity.funding_type == 'equity' %}bg-purple-50 text-purple-700 ring-1 ring-purple-100
+                        {% elif opportunity.funding_type == 'competition' %}bg-orange-50 text-orange-700 ring-1 ring-orange-100
+                        {% else %}bg-zinc-100 text-zinc-700 ring-1 ring-zinc-200{% endif %}">
+                        {{ opportunity.get_funding_type_display }}
+                    </span>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold bg-zinc-100 text-zinc-600">
+                        {{ opportunity.get_business_stage_display }}
+                    </span>
+                </div>
+                {% if opportunity.is_closing_soon %}
+                <span class="inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-bold bg-red-50 text-red-700 ring-1 ring-red-100 animate-pulse whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Closing Soon
+                </span>
+                {% endif %}
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-xl font-bold text-zinc-900 group-hover:text-brand-600 transition-colors duration-300 mb-3 leading-snug line-clamp-2">
+                {{ opportunity.funding_name }}
+            </h3>
+
+            <!-- Funder -->
+            <div class="flex items-center text-sm text-zinc-500 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center mr-3 group-hover:bg-brand-50 transition-colors">
+                    <svg class="w-4 h-4 text-zinc-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                </div>
+                <span class="font-medium truncate">{{ opportunity.funder }}</span>
+            </div>
+
+            <!-- Description - Show more text -->
+            <p class="text-zinc-600 text-sm mb-4 line-clamp-3 leading-relaxed flex-grow">
+                {{ opportunity.description|truncatewords:35 }}
+            </p>
+
+            <!-- Key Info Grid -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="bg-zinc-50 rounded-lg p-3">
+                    <p class="text-[10px] uppercase tracking-wider font-bold text-zinc-400 mb-1">Funding</p>
+                    <p class="text-sm font-bold text-zinc-900 truncate">
+                        {% if opportunity.funding_amount %}{{ opportunity.funding_amount }}{% else %}Variable{% endif %}
+                    </p>
+                </div>
+                <div class="bg-zinc-50 rounded-lg p-3">
+                    <p class="text-[10px] uppercase tracking-wider font-bold text-zinc-400 mb-1">Deadline</p>
+                    <p class="text-sm font-semibold {% if opportunity.is_closing_soon %}text-red-600{% else %}text-zinc-700{% endif %} truncate">
+                        {{ opportunity.deadline_display }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tags / Industries -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                {% for industry in opportunity.industries.all|slice:":2" %}
+                <span class="text-[10px] uppercase tracking-wider font-bold bg-zinc-100 text-zinc-500 px-2.5 py-1 rounded-md">
+                    {{ industry.name }}
+                </span>
+                {% endfor %}
+                {% if opportunity.industries.count > 2 %}
+                <span class="text-[10px] uppercase tracking-wider font-bold bg-zinc-100 text-zinc-400 px-2.5 py-1 rounded-md">
+                    +{{ opportunity.industries.count|add:"-2" }} more
+                </span>
+                {% endif %}
+                {% if not opportunity.industries.exists %}
+                <span class="text-[10px] uppercase tracking-wider font-bold bg-brand-50 text-brand-600 px-2.5 py-1 rounded-md">
+                    All Industries
+                </span>
+                {% endif %}
+            </div>
+
+            <!-- Eligibility Preview -->
+            {% if opportunity.eligibility_requirements %}
+            <div class="border-t border-zinc-100 pt-4 mt-auto">
+                <p class="text-[10px] uppercase tracking-wider font-bold text-zinc-400 mb-2">Key Requirements</p>
+                <ul class="space-y-1">
+                    {% for req in opportunity.eligibility_requirements|slice:":2" %}
+                    <li class="flex items-start text-xs text-zinc-600">
+                        <svg class="w-3.5 h-3.5 text-brand-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="line-clamp-1">{{ req }}</span>
+                    </li>
+                    {% endfor %}
+                    {% if opportunity.eligibility_requirements|length > 2 %}
+                    <li class="text-xs text-zinc-400 ml-5">+{{ opportunity.eligibility_requirements|length|add:"-2" }} more requirements</li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Hover arrow indicator -->
+        <div class="px-6 pb-6">
+            <div class="flex items-center justify-center py-3 rounded-xl bg-zinc-50 group-hover:bg-brand-50 transition-colors">
+                <span class="text-sm font-semibold text-zinc-500 group-hover:text-brand-600 transition-colors">View Full Details</span>
+                <svg class="w-4 h-4 ml-2 text-zinc-400 group-hover:text-brand-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+</a>
