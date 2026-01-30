@@ -20,3 +20,10 @@ def robots_txt(request):
         f"Sitemap: https://{request.get_host()}/sitemap.xml",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
+
+
+@cache_page(60 * 60 * 24)  # Cache for 24 hours
+def ads_txt(request):
+    """Serve ads.txt for Google AdSense verification."""
+    content = "google.com, pub-4896697928226626, DIRECT, f08c47fec0942fa0"
+    return HttpResponse(content, content_type="text/plain")
