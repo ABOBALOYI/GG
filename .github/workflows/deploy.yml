@@ -50,6 +50,29 @@ jobs:
             pip install -r requirements.txt
             python manage.py migrate --noinput
             python manage.py collectstatic --noinput
+            
+            # Stop existing Django process
             pkill -f "manage.py runserver" || true
-            nohup python manage.py runserver 127.0.0.1:8000 > /tmp/django.log 2>&1 &
-            echo "✅ Deployment complete!"
+            sleep 2
+            
+            # Start Django in background using a script that survives SSH disconnect
+            cat > /tmp/start_django.sh << 'EOF'
+            #!/bin/bash
+            cd ~/GG/grant_guide
+            source venv/bin/activate
+            exec python manage.py runserver 127.0.0.1:8000
+            EOF
+            chmod +x /tmp/start_django.sh
+            
+            # Use setsid to fully detach from terminal
+            setsid /tmp/start_django.sh > /tmp/django.log 2>&1 &
+            
+            # Wait and verify
+            sleep 3
+            if pgrep -f "manage.py runserver" > /dev/null; then
+              echo "✅ Django started successfully"
+            else
+              echo "❌ Django failed to start"
+              cat /tmp/django.log
+              exit 1
+            fi
