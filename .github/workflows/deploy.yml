@@ -1,12 +1,14 @@
 name: Deploy to Production
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'grant_guide/**'
-      - '.github/workflows/deploy.yml'
+  workflow_dispatch:  # Manual trigger only - prevents accidental deployments
+  # Uncomment below to enable auto-deploy on push:
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'grant_guide/**'
+  #     - '.github/workflows/deploy.yml'
 
 jobs:
   test:
