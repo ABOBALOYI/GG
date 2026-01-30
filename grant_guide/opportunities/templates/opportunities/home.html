@@ -1,6 +1,67 @@
 {% extends "base.html" %}
 
-{% block title %}Grant Guide South Africa - Find Business Funding{% endblock %}
+{% block title %}Business Grants South Africa 2025 | Free Funding Directory | GrantsGuide.co.za{% endblock %}
+
+{% block meta_description %}Discover {{ total_active }}+ business grants, loans & funding opportunities in South Africa. Free directory of NYDA grants, SEFA loans, government funding for SMMEs, youth & women entrepreneurs. Updated weekly.{% endblock %}
+
+{% block meta_keywords %}business grants South Africa 2025, SMME funding, government grants South Africa, NYDA grants, SEFA loans, business loans South Africa, funding for small business, entrepreneur funding, women business grants, youth business funding, township business grants, startup funding South Africa{% endblock %}
+
+{% block canonical_url %}https://grantsguide.co.za{% endblock %}
+
+{% block og_title %}Business Grants South Africa 2025 | {{ total_active }}+ Funding Opportunities{% endblock %}
+{% block og_description %}Free directory of business grants, loans & funding in South Africa. Find NYDA, SEFA, government & private funding for your business.{% endblock %}
+{% block og_url %}https://grantsguide.co.za{% endblock %}
+
+{% block twitter_title %}Business Grants South Africa 2025 | GrantsGuide.co.za{% endblock %}
+{% block twitter_description %}{{ total_active }}+ business grants & funding opportunities in South Africa. Free directory updated weekly.{% endblock %}
+
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "GrantsGuide.co.za",
+    "url": "https://grantsguide.co.za",
+    "description": "South Africa's comprehensive directory of business grants, loans, and funding opportunities",
+    "areaServed": {
+        "@type": "Country",
+        "name": "South Africa"
+    }
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "How do I apply for business grants in South Africa?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Browse our directory to find grants matching your business profile. Each listing includes eligibility requirements and direct links to apply on the funder's official website."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Are the grants on GrantsGuide free to apply for?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, all legitimate grants are free to apply for. Never pay anyone to apply for a grant. Our directory is also completely free to use."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What types of funding are available for South African businesses?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We list grants (non-repayable), loans (low-interest), equity funding (investment), and business competitions from government agencies like NYDA, SEFA, IDC, and private funders."
+            }
+        }
+    ]
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->

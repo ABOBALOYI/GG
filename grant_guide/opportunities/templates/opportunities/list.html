@@ -1,6 +1,33 @@
 {% extends "base.html" %}
 
-{% block title %}Browse Funding Opportunities - Grant Guide SA{% endblock %}
+{% block title %}Business Grants & Loans South Africa 2025 | Browse {{ total_count }}+ Opportunities{% endblock %}
+
+{% block meta_description %}Browse {{ total_count }}+ business grants, loans & funding opportunities in South Africa. Filter by funding type, province, industry. Find NYDA, SEFA, government & private funding.{% endblock %}
+
+{% block meta_keywords %}business grants directory South Africa, SMME funding list, government grants 2025, business loans South Africa, funding opportunities, NYDA funding, SEFA loans, startup grants{% endblock %}
+
+{% block canonical_url %}https://grantsguide.co.za/opportunities/{% endblock %}
+
+{% block og_title %}Browse {{ total_count }}+ Business Grants & Funding | South Africa 2025{% endblock %}
+{% block og_description %}Complete directory of business grants, loans & funding in South Africa. Filter by type, province, industry.{% endblock %}
+{% block og_url %}https://grantsguide.co.za/opportunities/{% endblock %}
+
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Business Grants & Funding Directory South Africa",
+    "description": "Browse {{ total_count }}+ business grants, loans and funding opportunities in South Africa",
+    "url": "https://grantsguide.co.za/opportunities/",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "GrantsGuide.co.za",
+        "url": "https://grantsguide.co.za"
+    }
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <div class="container mx-auto px-6 py-12 max-w-7xl">

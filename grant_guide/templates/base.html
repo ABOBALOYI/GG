@@ -3,7 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Grant Guide South Africa{% endblock %}</title>
+    <title>{% block title %}Business Grants & Funding Opportunities South Africa | GrantsGuide.co.za{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block meta_description %}Find business grants, loans, and funding opportunities in South Africa. Free directory of government grants, NYDA funding, SEFA loans, and private sector funding for SMMEs, youth, and women entrepreneurs.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}business grants South Africa, SMME funding, government grants, NYDA grants, SEFA loans, business loans South Africa, funding for small business, entrepreneur funding, women business grants, youth business funding{% endblock %}">
+    <meta name="author" content="GrantsGuide.co.za">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{% block canonical_url %}https://grantsguide.co.za{% endblock %}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block og_url %}https://grantsguide.co.za{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Business Grants & Funding South Africa | GrantsGuide.co.za{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Find business grants, loans, and funding opportunities in South Africa. Your complete guide to SMME funding.{% endblock %}">
+    <meta property="og:site_name" content="GrantsGuide.co.za">
+    <meta property="og:locale" content="en_ZA">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Business Grants & Funding South Africa{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Find business grants, loans, and funding opportunities in South Africa.{% endblock %}">
+    
+    <!-- Geo Tags for South Africa -->
+    <meta name="geo.region" content="ZA">
+    <meta name="geo.placename" content="South Africa">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "GrantsGuide.co.za",
+        "url": "https://grantsguide.co.za",
+        "description": "South Africa's comprehensive directory of business grants, loans, and funding opportunities for entrepreneurs and SMMEs.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://grantsguide.co.za/opportunities/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    {% block extra_schema %}{% endblock %}
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">

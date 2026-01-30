@@ -1,6 +1,72 @@
 {% extends "base.html" %}
 
-{% block title %}{{ opportunity.funding_name }} - Grant Guide SA{% endblock %}
+{% block title %}{{ opportunity.funding_name }} | {{ opportunity.get_funding_type_display }} South Africa{% endblock %}
+
+{% block meta_description %}{{ opportunity.funding_name }} - {{ opportunity.get_funding_type_display }} from {{ opportunity.funder_name }}. {% if opportunity.funding_amount %}Funding up to {{ opportunity.funding_amount }}.{% endif %} {{ opportunity.description|truncatewords:25 }}{% endblock %}
+
+{% block meta_keywords %}{{ opportunity.funding_name }}, {{ opportunity.funder_name }}, {{ opportunity.get_funding_type_display }} South Africa, business funding, {% for industry in opportunity.industries.all %}{{ industry.name }}, {% endfor %}SMME funding{% endblock %}
+
+{% block canonical_url %}https://grantsguide.co.za/opportunities/{{ opportunity.slug }}/{% endblock %}
+
+{% block og_title %}{{ opportunity.funding_name }} | {{ opportunity.get_funding_type_display }}{% endblock %}
+{% block og_description %}{{ opportunity.get_funding_type_display }} from {{ opportunity.funder_name }}. {% if opportunity.funding_amount %}Up to {{ opportunity.funding_amount }}.{% endif %} Apply now.{% endblock %}
+{% block og_url %}https://grantsguide.co.za/opportunities/{{ opportunity.slug }}/{% endblock %}
+
+{% block twitter_title %}{{ opportunity.funding_name }} | {{ opportunity.get_funding_type_display }}{% endblock %}
+{% block twitter_description %}{{ opportunity.get_funding_type_display }} from {{ opportunity.funder_name }}. {% if opportunity.funding_amount %}Up to {{ opportunity.funding_amount }}.{% endif %}{% endblock %}
+
+{% block extra_schema %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FinancialProduct",
+    "name": "{{ opportunity.funding_name }}",
+    "description": "{{ opportunity.description|truncatewords:50|escapejs }}",
+    "provider": {
+        "@type": "Organization",
+        "name": "{{ opportunity.funder_name }}"
+    },
+    "url": "https://grantsguide.co.za/opportunities/{{ opportunity.slug }}/",
+    "areaServed": {
+        "@type": "Country",
+        "name": "South Africa"
+    }
+    {% if opportunity.funding_amount %},
+    "amount": {
+        "@type": "MonetaryAmount",
+        "currency": "ZAR",
+        "value": "{{ opportunity.funding_amount }}"
+    }
+    {% endif %}
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://grantsguide.co.za"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Funding Directory",
+            "item": "https://grantsguide.co.za/opportunities/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ opportunity.funding_name }}",
+            "item": "https://grantsguide.co.za/opportunities/{{ opportunity.slug }}/"
+        }
+    ]
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <div class="container mx-auto px-6 py-12 max-w-6xl">
